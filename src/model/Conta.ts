@@ -1,4 +1,4 @@
-export class Conta {
+export abstract class Conta {
 
     private _numero: number;
     private _agencia: number;
@@ -14,69 +14,62 @@ export class Conta {
         this._saldo = saldo;
     }
 
-
     public get numero() {
         return this._numero;
-    }
-
-    public get agencia() {
-        return this._agencia;
-    }
-
-    public get tipo() {
-        return this._tipo;
-    }
-
-    public get titular() {
-        return this._titular;
-    }
-
-    public get saldo() {
-        return this._saldo;
     }
 
     public set numero(numero: number) {
         this._numero = numero;
     }
 
+    public get agencia() {
+        return this._agencia;
+    }
+
     public set agencia(agencia: number) {
         this._agencia = agencia;
+    }
+
+    public get tipo() {
+        return this._tipo;
     }
 
     public set tipo(tipo: number) {
         this._tipo = tipo;
     }
 
+    public get titular() {
+        return this._titular;
+    }
+
     public set titular(titular: string) {
         this._titular = titular;
     }
 
+    public get saldo() {
+        return this._saldo;
+    }
 
     public set saldo(saldo: number) {
         this._saldo = saldo;
     }
 
-    public sacar(valor: number): boolean{
-        if(this._saldo < valor){
-           console.log(`\n Erro! \n O saque no valor de ${valor} reais foi negado.
-                        \n O valor do saque é maior do que o saldo na conta.
-                        \n O saldo atual é de: ${this._saldo.toFixed(2)}`);
+    public sacar(valor: number): boolean {
+
+        if (this._saldo < valor) {
+            console.log("\n Saldo Insuficiente!");
             return false;
         }
+
         this._saldo = this._saldo - valor;
-        console.log(`\n Foi realizado o saque no valor de ${valor} reais com sucesso!
-                     \n O saldo atual é de: ${this._saldo.toFixed(2)}`);
         return true;
     }
 
-    public depositar(valor:number) : void {
+    public depositar(valor: number): void {
         this._saldo = this._saldo + valor;
-        console.log(`\n Foi realizado o deposito no valor de ${valor} reais com sucesso!
-                     \n O saldo atual é de: ${this._saldo.toFixed(2)}`);
-        
     }
 
-      public visualizar(): void {
+    public visualizar(): void {
 
         let tipo: string = "";
 
@@ -99,4 +92,5 @@ export class Conta {
         console.log("Saldo: " + this._saldo.toFixed(2));
 
     }
+
 }
